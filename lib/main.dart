@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
+import 'theme/theme_provider.dart';
+import 'package:provider/provider.dart';
+import 'theme/light_mode.dart';
+import 'theme/dark_mode.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => ThemeProvider(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -11,9 +16,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false, // remove debug banner
       home: HomePage(),
+      theme: Provider.of<ThemeProvider>(context).themeMode,
     );
   }
 }
