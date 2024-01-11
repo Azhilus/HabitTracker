@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
         drawer: Drawer(
           backgroundColor: Theme.of(context).colorScheme.background,
           child: Center(
-            child: Switch(
+            child: CupertinoSwitch(
               value: Provider.of<ThemeProvider>(context).isDarkMode,
               onChanged: (value) =>
                   Provider.of<ThemeProvider>(context, listen: false)

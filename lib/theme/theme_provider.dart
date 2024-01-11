@@ -1,24 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'light_mode.dart';
 import 'dark_mode.dart';
+import 'light_mode.dart';
 
-class ThemeProvider extends ChangeNotifier {
-  ThemeData _themeData = lightMode;
+class ThemeProvider with ChangeNotifier {
+  bool _isDarkMode = false;
 
-  ThemeData get themeMode => _themeData;
+  bool get isDarkMode => _isDarkMode;
 
-  bool get isDarkMode => _themeData == darkMode;
-
-  set themeData(ThemeData themeData) {
-    _themeData = themeData;
+  void toggleTheme() {
+    _isDarkMode = !_isDarkMode;
     notifyListeners();
   }
 
-  void toggleTheme() {
-    if (_themeData == lightMode) {
-      _themeData = darkMode;
-    } else {
-      _themeData = lightMode;
-    }
+  ThemeData get themeMode {
+    return _isDarkMode ? DarkMode.theme : LightMode.theme;
   }
 }
