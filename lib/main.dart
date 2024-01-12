@@ -5,6 +5,7 @@ import 'theme/light_mode.dart';
 import 'theme/dark_mode.dart';
 import 'package:provider/provider.dart';
 import 'database/habit_database.dart';
+import 'models/checkbox_state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,10 +13,14 @@ void main() async {
   await HabitDatabase.initialize();
   await HabitDatabase().saveFirstLaunchDate();
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => HabitDatabase()),
-      ChangeNotifierProvider(create: (context) => ThemeProvider()),
-    ], child: const MyApp()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => HabitDatabase()),
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => HabitModel()),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
@@ -26,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: HomePage(),
       theme: LightMode.theme,
       darkTheme: DarkMode.theme,
       themeMode: Provider.of<ThemeProvider>(context).isDarkMode

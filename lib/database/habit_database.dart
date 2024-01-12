@@ -106,4 +106,6 @@ class HabitDatabase extends ChangeNotifier {
 
     readHabits();
   }
+
+  void createHabit(String newHabitName) {}
 }
