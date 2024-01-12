@@ -5,7 +5,6 @@ import 'theme/light_mode.dart';
 import 'theme/dark_mode.dart';
 import 'package:provider/provider.dart';
 import 'database/habit_database.dart';
-import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
